@@ -64,6 +64,33 @@ p.author{
 }
 /*=========================*/
 
+
+/* 懸浮視窗              */
+.white_content { 
+    display: none; 
+    position: absolute; 
+    width:600px;
+    height:350px;
+    border: 5px solid #79dce6; 
+    background-color: white; 
+    z-index:1002; 
+    left:50%;
+    top:50%;
+    margin-top:-180px;
+    margin-left:-300px;
+    overflow:center; 
+    text-align:center;
+} 
+
+iframe{
+    box-shadow:0px 5px 10px 0px #333;
+    margin-top:20px;
+    margin-bottom:20px;
+    margin-left:40px;
+    margin-right:40px;
+}
+/*=========================*/
+
 /* 圖片按鈕               */
 
 div.items{
@@ -87,6 +114,7 @@ div.item{
     overflow: hidden; 
        
 }
+
 img.flag{
     margin-bottom:-25px;
 }
@@ -110,8 +138,13 @@ p.data{
     text-align:center;
     color: #000000; 
 }
+
+div.item:hover{
+    /*opacity:0.8;*/
+    filter:brightness(0.7);
+}
 /*=========================*/
- 
+
 
 /* 表尾                     */
 div.footer{
