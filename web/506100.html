@@ -16,10 +16,13 @@
                 $("tempdata").append(data.field1 + "° C");
                 if (28 <= data.field1) {
                     $("tempdata").css('color', '#ff0000')
+                    $("Tempadvise").append("目前溫度過高，建議開冷氣")
                 } else if (18 < data.field1) {
                     $("tempdata").css('color', '#000')
+                    $("Tempadvise").append("目前溫度適宜")
                 } else {
                     $("tempdata").css('color', '#ff0000')
+                    $("Tempadvise").append("溫度過低，建議開暖氣")
                 };
                 $("humidata").append(data.field2 + " %");
                 if (70 <= data.field2) {
@@ -36,12 +39,16 @@
                 $("PM25data").append(data.field7 + " ppm");
                 if (70 < data.field7) {
                     $("PM25data").css('color', '#ff0000');
+                    $("PM25advise").append("PM2.5濃度過高，建議不要外出")
                 } else if (53 < data.field7) {
                     $("PM25data").css('color', '#ff0000');
+                    $("PM25advise").append("PM2.5濃度偏高，建議避免外出")
                 } else if (35 < data.field7) {
                     $("PM25data").css('color', '#000');
+                    $("PM25advise").append("PM2.5濃度中，可正常外出，敏感族群建議避免外出")
                 } else {
                     $("PM25data").css('color', '#000');
+                    $("PM25advise").append("PM2.5濃度低，可正常外出")
 
                 };
 
@@ -96,6 +103,17 @@
             <img src="images/2.jpg" class="author">
             <h1>空氣品質監測站</h1>
             <div class="clear"></div>
+
+            <!--建議-->
+            <div class="advise">
+                <h2>溫度:
+                    <Tempadvise></Tempadvise>
+                </h2>
+                <h2>PM2.5濃度:
+                    <PM25advise></PM25advise>
+                </h2>
+
+            </div>
 
 
             <!-- 懸浮視窗  -->
