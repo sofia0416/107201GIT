@@ -1,92 +1,120 @@
-#define BLYNK_PRINT Serial
-#include <MQ2.h>
-#include <Bridge.h>
-#include <BlynkSimpleYun.h>
-#include <DHT.h>
-#include <Wire.h>
-#include <SeeedOLED.h>
-//載入相關套件
-
-char auth[] = "8320b6af67fd49f4b6f5a6b727f5d573";//Blynk通行證
-#define DHTPIN A1 //dht腳位
-
-#define DHTTYPE DHT22 
-
-int pin = A0; //mq2腳位
-int lpg, co, smoke; //定義擷取數據
+#include <DHT.h>   //載入溫度套件
+#include <MQ2.h>    //載入氣體套件
+#include <PMS.h>   //載入G3套件
+#include <SoftwareSerial.h>
+#include <Bridge.h>   //MCU TO MPU
+#include <Wire.h>     
+#include <SeeedOLED.h>  //載入OLED套件
+#define DHTPIN A1       //定義DHT腳位
+#define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
-BlynkTimer timer;
+SoftwareSerial pmsSerial(9, 10);   //定義G3腳位
+PMS pms(pmsSerial);
+PMS::DATA pmsData;
 
-void sendSensor()  //溫度傳送
+int pin = A0;       //定義MQ2腳位
+int lpg, co, smoke;
+int PM1()   //G3 PM1
 {
-  float h = dht.readHumidity();
-  float t = dht.readTemperature(); // 讀取dht
-  
-  Serial.print("DHT-Humidity: "); 
-  Serial.print(h);
-  Serial.print(" %\t");
-  Serial.print("DHT-Temperature: "); 
-  Serial.print(t);
-  Serial.println(" *C\t");
-  if (isnan(h) || isnan(t)) { //沒收到數據
-    Serial.println(F("Failed to read from DHT sensor!"));
-    return;
-  }
-  else if (t > 38) {
-    Blynk.notify("警告-溫度超過38C！");
-  }
-  else if (h < 40) {
-    Blynk.notify("警告-濕度小於40%！");
-  }  
-  //Blynk.virtualWrite(V5, h); //定義接收腳位
-  //Blynk.virtualWrite(V6, t);
-  //Bridge.put("Humidity", String(h));
-  //Bridge.put("Temperature", String(t));
-  }
+  pms.read(pmsData);
+  return pmsData.PM_AE_UG_1_0;
+}
+
+int PM2()   //G3 PM2.5
+{
+  pms.read(pmsData);
+  return pmsData.PM_AE_UG_2_5;
+}
+
+int PM10()   //G3 PM10
+{
+  pms.read(pmsData);
+  return pmsData.PM_AE_UG_10_0;
+}
 
 MQ2 mq2(pin);
 
-void setup(){
-  Serial.begin(9600);
-  Blynk.begin(auth);
+void setup() {  //相關設定
+  // put your setup code here, to run once:
+  Serial.begin(9600);  // 鮑率9600
   dht.begin();
-  timer.setInterval(1000L, sendSensor); //多久傳送數據
-  Bridge.begin();
   mq2.begin();
+  pmsSerial.begin(9600);
   Wire.begin();
-  SeeedOled.init();                         // 初始化OLED               
-  SeeedOled.setNormalDisplay();           //設定OLED 正常顯示
-  SeeedOled.setPageMode();     
+  SeeedOled.init(); 
+  Bridge.begin();
+  SeeedOled.clearDisplay();              //清除OLED
+  SeeedOled.setNormalDisplay();         //設定OLED正常顯示
+  SeeedOled.setPageMode();             //設定為頁模式
 }
 
-void loop(){ //OLED&MQ2
-  
-  float h = dht.readHumidity(); 
+void loop() {
+  // put your main code here, to run repeatedly:
+  float h = dht.readHumidity();    //DHT22計算
   float t = dht.readTemperature();
-  float* values= mq2.read(true); //set it false if you don't want to print the values in the Serial
+  float* values= mq2.read(true);   //MQ2
   
-  //lpg = values[0];
-  lpg = mq2.readLPG();
-  //co = values[1];
+  lpg = mq2.readLPG();  //MQ2計算
   co = mq2.readCO();
-  //smoke = values[2];
   smoke = mq2.readSmoke();
-   //Blynk.virtualWrite(V7, lpg); //定義腳位
-   //Blynk.virtualWrite(V8, co);
-   //Blynk.virtualWrite(V9, smoke);
-   //Bridge.put("LPG", String(lpg)); //存放資料
-   //Bridge.put("CO", String(co));
-  // Bridge.put("SMOKE", String(smoke));
-   SeeedOled.clearDisplay();          //清除OLED   
-   SeeedOled.setTextXY(0,0);         //設定OLED 從0,0開始顯示
-   SeeedOled.putString("Humidity: ");  // 顯示字元 Humidity: 
-   SeeedOled.putFloat(h);             //顯示讀取的濕度值
-   SeeedOled.putString("%");          //顯示字元 % 
-   SeeedOled.setTextXY(2,0);         //設定OLED 從2,0開始顯示
-   SeeedOled.putString("Temp: ");     //顯示字元 Temp
-   SeeedOled.putFloat(t);            //顯示讀取的攝氏溫度值
-   SeeedOled.putString("*C");         
-   delay(200);
-   //Blynk.run();
-   timer.run();
+  Serial.print("DHT-Humidity: ");  //印出濕度
+  Serial.print(h);
+  Serial.print(" %\t");
+  Serial.print("DHT-Temperature: ");  //印出溫度
+  Serial.print(t);
+  Serial.println(" *C\t");
+  Serial.println(PM1());    //印出PM1.0
+  Serial.println(PM2());    //印出PM2.5
+  Serial.println(PM10());   //印出PM10
+
+  SeeedOled.clearDisplay();      //清除OLED   
+  SeeedOled.setTextXY(0,0);     //OLED游標移至0.0
+  SeeedOled.putString("Temp: ");   //顯示字元TEMP
+  SeeedOled.putNumber(t); //顯示運算後的t值
+  SeeedOled.putString("*C");    //顯示字元*C
+    
+  SeeedOled.setTextXY(1,0);     //OLED游標移至1.0
+  SeeedOled.putString("Humi: ");   //顯示字元Humi:
+  SeeedOled.putNumber(h); //顯示運算後h的值
+  SeeedOled.putString("%");    //顯示字元%
+  
+  SeeedOled.setTextXY(2,0);     //OLED游標移至2.0
+  SeeedOled.putString("PM1.0: ");   //顯示字元PM1.0:
+  SeeedOled.putNumber(PM1()); //顯示運算後PM1.0的值
+  SeeedOled.putString("ug/m3");    //顯示字元ug/m3
+
+  SeeedOled.setTextXY(3,0);    
+  SeeedOled.putString("PM2.5: ");   
+  SeeedOled.putNumber(PM2()); 
+  SeeedOled.putString("ug/m3");   
+
+  SeeedOled.setTextXY(4,0);    
+  SeeedOled.putString("PM10: ");
+  SeeedOled.putNumber(PM10());
+  SeeedOled.putString("ug/m3");
+
+  SeeedOled.setTextXY(5,0);
+  SeeedOled.putString("LPG: ");
+  SeeedOled.putNumber(lpg);
+  SeeedOled.putString("ppm");
+
+  SeeedOled.setTextXY(6,0);
+  SeeedOled.putString("CO: ");
+  SeeedOled.putNumber(co);
+  SeeedOled.putString("ppm");
+
+  SeeedOled.setTextXY(7,0);
+  SeeedOled.putString("SMOKE: ");
+  SeeedOled.putNumber(smoke);
+  SeeedOled.putString("ppm");
+  // Bridge to MPU
+  Bridge.put("h", String(h));
+  Bridge.put("t", String(t));
+  Bridge.put("lpg", String(lpg));
+  Bridge.put("co", String(co));
+  Bridge.put("smoke", String(smoke));
+  Bridge.put("PM1", String(PM1()));
+  Bridge.put("PM2", String(PM2()));
+  Bridge.put("PM10", String(PM10()));
+  delay(5000); //每5秒回傳一次資料
 }
