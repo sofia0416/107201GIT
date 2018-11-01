@@ -71,8 +71,6 @@ p.author{
     position: absolute; 
     width:600px;
     height:350px;
-    border: 5px solid #79dce6; 
-    background-color: white; 
     z-index:1002; 
     left:50%;
     top:50%;
