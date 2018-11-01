@@ -11,7 +11,7 @@
     <script>
         //<!-- 抓最新資料  -->
         $(function () {
-            $.getJSON("https://api.thingspeak.com/channels/506100/feeds/last.json?key=BF7HJHRF5JYA8QXF", function (data) {
+            $.getJSON("https://api.thingspeak.com/channels/579450/feeds/last.json?key=37O2F5XCOC4ZV4DV", function (data) {
                 $("timedata").append("<p>" + data.created_at + "</p>");
                 $("tempdata").append(data.field1 + "° C");
                 if (28 <= data.field1) {
@@ -101,9 +101,9 @@
         <div class="content">
             <!-- 標題  -->
             <a href="index.html">
-                <img src="images/2.jpg" title="返回首頁" class="author">
-                </a><h1>空氣品質監測站</h1>
-                <div class="clear"></div>
+            <img src="images/2.jpg" title="返回首頁" class="author">
+            </a><h1>空氣品質監測第二站</h1>
+            <div class="clear"></div>
 
             <!--建議-->
             <div class="advise">
@@ -250,7 +250,6 @@
 
                 <div class="clear"></div>
             </div>
-
         </div>
 
         <!-- 頁尾copyright  -->
