@@ -64,7 +64,6 @@ p.author{
 }
 /*=========================*/
 
-
 /* 圖片按鈕               */
 
 div.items{
@@ -88,8 +87,29 @@ div.item{
     overflow: hidden; 
        
 }
+img.flag{
+    margin-bottom:-25px;
+}
 
+div.items a:nth-child(1) div.item,
+div.items a:nth-child(2) div.item,
+div.items a:nth-child(3) div.item
+{
+    margin-right:30px;
+}
 
+div.items2 a:nth-child(1) div.item,
+div.items2 a:nth-child(2) div.item,
+div.items2 a:nth-child(3) div.item
+{
+    margin-right:30px;
+}
+
+p.data{
+    font-size:30px;
+    text-align:center;
+    color: #000000; 
+}
 /*=========================*/
  
 

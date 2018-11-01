@@ -7,7 +7,27 @@
     <link href="css/arduino-1.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
     <link href="images/2.jpg" rel="shortcut icon">
-    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        //<!-- 抓最新資料  -->
+        $(function () {
+            $.getJSON("https://api.thingspeak.com/channels/506100/feeds/last.json?key=BF7HJHRF5JYA8QXF", function (data) {
+                $("timedata").append("<p>" + data.created_at + "</p>");
+                $("tempdata").append(data.field1 + "° C");
+                $("humidata").append(data.field2 + " %");
+                $("LPGdata").append(data.field3 + " ppm");
+                $("COdata").append(data.field4 + " ppm");
+                $("SMOKEdata").append(data.field5 + " ppm");
+                $("PM1data").append(data.field6 + " μg/m<sup>3</sup>");
+                $("PM25data").append(data.field7 + " μg/m<sup>3</sup>");
+                $("PM10data").append(data.field8 + " μg/m<sup>3</sup>"); 
+            });
+        });
+      
+    </script>
 
 </head>
 
@@ -19,47 +39,88 @@
             <img src="images/2.jpg" class="author">
             <h1>空氣品質監測站</h1>
 
+
             <!-- 小方塊 -->
             <div class="clear"></div>
 
             <div class="items">
                     <!--小方塊按鈕-->
+                <a href="JavaScript:void(0)" id="tempchart">
                     <div class="item">
                         <img src="images/a.jpg" class="flag">
                         <!--小方塊標題-->
-                    </div>
+                        <p class="data">
+                            <tempdata></tempdata>
+                            <!--小方塊數據-->
 
+                        </p>
+                    </div>
+                </a>
+
+                <a href="JavaScript:void(0)" id="humichart">
                     <div class="item">
                         <img src="images/b.jpg" class="flag">
+                        <p class="data">
+                            <humidata></humidata>
+                        </p>
                     </div>
+                </a>
 
+                <a href="JavaScript:void(0)" id="LPGchart">
                     <div class="item">
                         <img src="images/c.jpg" class="flag">
+                        <p class="data">
+                            <LPGdata></LPGdata>
+                        </p>
                     </div>
-
+                </a>
+                <a href="JavaScript:void(0)" id="COchart">
                     <div class="item">
                         <img src="images/d.jpg" class="flag">
+                        <p class="data">
+                            <COdata></COdata>
+                        </p>
                     </div>
+                </a>
 
                 <div class="clear"></div>
             </div>
 
             <div class="items2">
+                <a href="JavaScript:void(0)" id="PM1chart">
                     <div class="item">
                         <img src="images/e.jpg" class="flag">
+                        <p class="data">
+                            <PM1data></PM1data>
+                        </p>
                     </div>
+                </a>
 
+                <a href="JavaScript:void(0)" id="PM25chart">
                     <div class="item">
                         <img src="images/f.jpg" class="flag">
+                        <p class="data">
+                            <PM25data></PM25data>
+                        </p>
                     </div>
+                </a>
 
+                <a href="JavaScript:void(0)" id="PM10chart">
                     <div class="item">
                         <img src="images/g.jpg" class="flag">
+                        <p class="data">
+                            <PM10data></PM10data>
+                        </p>
                     </div>
-
+                </a>
+                <a href="JavaScript:void(0)" id="SMOKEchart">
                     <div class="item">
                         <img src="images/h.jpg" class="flag">
+                        <p class="data">
+                            <SMOKEdata></SMOKEdata>
+                        </p>
                     </div>
+                </a>
 
                 <div class="clear"></div>
             </div>
