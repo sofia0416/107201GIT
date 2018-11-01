@@ -38,10 +38,10 @@ void sendSensor()  //溫度傳送
   else if (h < 40) {
     Blynk.notify("警告-濕度小於40%！");
   }  
-  Blynk.virtualWrite(V5, h); //定義接收腳位
-  Blynk.virtualWrite(V6, t);
-  Bridge.put("Humidity", String(h));
-  Bridge.put("Temperature", String(t));
+  //Blynk.virtualWrite(V5, h); //定義接收腳位
+  //Blynk.virtualWrite(V6, t);
+  //Bridge.put("Humidity", String(h));
+  //Bridge.put("Temperature", String(t));
   }
 
 MQ2 mq2(pin);
@@ -65,31 +65,28 @@ void loop(){ //OLED&MQ2
   float t = dht.readTemperature();
   float* values= mq2.read(true); //set it false if you don't want to print the values in the Serial
   
-  lpg = values[0];
+  //lpg = values[0];
   lpg = mq2.readLPG();
-  co = values[1];
+  //co = values[1];
   co = mq2.readCO();
-  smoke = values[2];
+  //smoke = values[2];
   smoke = mq2.readSmoke();
-  Blynk.virtualWrite(V7, lpg); //定義腳位
-  Blynk.virtualWrite(V8, co);
-  Blynk.virtualWrite(V9, smoke);
-  SeeedOled.clearDisplay();          //清除OLED   
-  SeeedOled.setTextXY(0,0);         //設定OLED 從0,0開始顯示
-  SeeedOled.putString("Humidity: ");  // 顯示字元 Humidity: 
-  SeeedOled.putFloat(h);             //顯示讀取的濕度值
-  SeeedOled.putString("%");          //顯示字元 % 
-  SeeedOled.setTextXY(2,0);         //設定OLED 從2,0開始顯示
-  SeeedOled.putString("Temp: ");     //顯示字元 Temp
-  SeeedOled.putFloat(t);            //顯示讀取的攝氏溫度值
-  SeeedOled.putString("*C");         
-  delay(200);
-  Blynk.run();
-  timer.run();
+   //Blynk.virtualWrite(V7, lpg); //定義腳位
+   //Blynk.virtualWrite(V8, co);
+   //Blynk.virtualWrite(V9, smoke);
+   //Bridge.put("LPG", String(lpg)); //存放資料
+   //Bridge.put("CO", String(co));
+  // Bridge.put("SMOKE", String(smoke));
+   SeeedOled.clearDisplay();          //清除OLED   
+   SeeedOled.setTextXY(0,0);         //設定OLED 從0,0開始顯示
+   SeeedOled.putString("Humidity: ");  // 顯示字元 Humidity: 
+   SeeedOled.putFloat(h);             //顯示讀取的濕度值
+   SeeedOled.putString("%");          //顯示字元 % 
+   SeeedOled.setTextXY(2,0);         //設定OLED 從2,0開始顯示
+   SeeedOled.putString("Temp: ");     //顯示字元 Temp
+   SeeedOled.putFloat(t);            //顯示讀取的攝氏溫度值
+   SeeedOled.putString("*C");         
+   delay(200);
+   //Blynk.run();
+   timer.run();
 }
-
-
-
-
-//8月中
-//程式能跑，但是7688記憶體不足無法上傳執行。
