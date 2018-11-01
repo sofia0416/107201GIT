@@ -1,46 +1,51 @@
-#include <PMS.h>
-#include <SoftwareSerial.h>
+#define BLYNK_PRINT Serial
+#include <Bridge.h>
+#include <BlynkSimpleYun.h>
+#include <MQ2.h>
 
-SoftwareSerial pmsSerial(2, 3);
-PMS pms(pmsSerial);
-PMS::DATA pmsData;
+char auth[] = "19f92e80b5e34502b59a61e83d7bf589";
 
 
-int pms_read_PM1()
+int pin = A0;
+int lpg, co, smoke;
+
+BlynkTimer timer;
+
+MQ2 mq2(pin);
+
+void sendSensor()
 {
-  pms.read(pmsData);
-  return pmsData.PM_AE_UG_1_0;
-}
+  float* values= mq2.read(true); //set it false if you don't want to print the values in the Serial
+  
+  //lpg = values[0];
+  lpg = mq2.readLPG();
+  //co = values[1];
+  co = mq2.readCO();
+  //smoke = values[2];
+  smoke = mq2.readSmoke();
+  Blynk.virtualWrite(V5, lpg);
+  Blynk.virtualWrite(V6, co);
+  Blynk.virtualWrite(V7, smoke);
+  }
 
-int pms_read_PM2()
-{
-  pms.read(pmsData);
-  return pmsData.PM_AE_UG_2_5;
-}
-
-int pms_read_PM10()
-{
-  pms.read(pmsData);
-  return pmsData.PM_AE_UG_10_0;
-}
 
 void setup()
 {
+  // Debug console
   Serial.begin(9600);
-  pmsSerial.begin(9600);
+  Blynk.begin(auth);
+  mq2.begin();
+  timer.setInterval(1000L, sendSensor);
+  Bridge.begin();
 }
 
 void loop()
 {
-  Serial.print("PM1.0:");
-  Serial.println(pms_read_PM1());
-  Serial.print("PM2.5:");
-  Serial.println(pms_read_PM2());
-  Serial.print("PM10:");
-  Serial.println(pms_read_PM1());
   delay(1000);
+  Blynk.run();
+  timer.run();
 }
 
-
-//在git找到7688+g3的.h，在編寫設定讓它顯示
+//0722
+//mq2 to blynk 成功
 
