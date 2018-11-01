@@ -114,7 +114,6 @@ div.item{
     overflow: hidden; 
        
 }
-
 img.flag{
     margin-bottom:-25px;
 }
@@ -143,8 +142,9 @@ div.item:hover{
     /*opacity:0.8;*/
     filter:brightness(0.7);
 }
-/*=========================*/
 
+/*=========================*/
+ 
 
 /* 表尾                     */
 div.footer{

@@ -14,19 +14,46 @@
             $.getJSON("https://api.thingspeak.com/channels/506100/feeds/last.json?key=BF7HJHRF5JYA8QXF", function (data) {
                 $("timedata").append("<p>" + data.created_at + "</p>");
                 $("tempdata").append(data.field1 + "° C");
+                if (28 <= data.field1) {
+                    $("tempdata").css('color', '#ff0000')
+                } else if (18 < data.field1) {
+                    $("tempdata").css('color', '#000')
+                } else {
+                    $("tempdata").css('color', '#ff0000')
+                };
                 $("humidata").append(data.field2 + " %");
+                if (70 <= data.field2) {
+                    $("humidata").css('color', '#ff0000')
+                } else if (30 < data.field2) {
+                    $("humidata").css('color', '#000')
+                } else {
+                    $("humidata").css('color', '#ff0000')
+                };
                 $("LPGdata").append(data.field3 + " ppm");
                 $("COdata").append(data.field4 + " ppm");
                 $("SMOKEdata").append(data.field5 + " ppm");
                 $("PM1data").append(data.field6 + " ppm");
                 $("PM25data").append(data.field7 + " ppm");
+                if (70 < data.field7) {
+                    $("PM25data").css('color', '#ff0000');
+                } else if (53 < data.field7) {
+                    $("PM25data").css('color', '#ff0000');
+                } else if (35 < data.field7) {
+                    $("PM25data").css('color', '#000');
+                } else {
+                    $("PM25data").css('color', '#000');
+
+                };
+
                 $("PM10data").append(data.field8 + " ppm");
+
             });
+
+
         });
 
 
-        //<!-- 開啟懸浮視窗  -->
-        function openDialog(showchart) {                
+        function openDialog(showchart) {                 //<!-- 開啟懸浮視窗  -->
 
             if (showchart == tempchart) {
                 document.getElementById('tempchart').style.display = 'block';
@@ -46,9 +73,7 @@
                 document.getElementById('SMOKEchart').style.display = 'block'
             }
         }
-
-         //<!-- 關閉懸浮視窗  -->
-        function closeDialog() {                       
+        function closeDialog() {                        //<!-- 關閉懸浮視窗  -->
             document.getElementById('tempchart').style.display = 'none';
             document.getElementById('humichart').style.display = 'none';
             document.getElementById('LPGchart').style.display = 'none';
