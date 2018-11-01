@@ -1,51 +1,58 @@
 #define BLYNK_PRINT Serial
-#include <Bridge.h>
-#include <BlynkSimpleYun.h>
 #include <MQ2.h>
+#include <BlynkSimpleYun.h>
+#include <DHT.h>
 
-char auth[] = "19f92e80b5e34502b59a61e83d7bf589";
-
-
-int pin = A0;
-int lpg, co, smoke;
-
+char auth[] = "8320b6af67fd49f4b6f5a6b727f5d573";
+#define DHTPIN A1
+#define DHTTYPE DHT22 
+WidgetLCD lcd(V0);
+int lpg, co, smoke, pin = A0; 
+DHT dht(DHTPIN, DHTTYPE);
 BlynkTimer timer;
-
-MQ2 mq2(pin);
 
 void sendSensor()
 {
-  float* values= mq2.read(true); //set it false if you don't want to print the values in the Serial
-  
-  //lpg = values[0];
-  lpg = mq2.readLPG();
-  //co = values[1];
-  co = mq2.readCO();
-  //smoke = values[2];
-  smoke = mq2.readSmoke();
-  Blynk.virtualWrite(V5, lpg);
-  Blynk.virtualWrite(V6, co);
-  Blynk.virtualWrite(V7, smoke);
+  float h = dht.readHumidity();
+  float t = dht.readTemperature(); 
+  Serial.print(h);
+  Serial.print(t);
+  if (t < 38){
+    lcd.print(4, 0, "正常  ");
+  }
+   if (t > 38){
+    Blynk.notify(F("溫度超過38C！"));
+    lcd.print(4, 0, "有點熱");
+  }
+  Blynk.virtualWrite(V5, h);
+  Blynk.virtualWrite(V6, t);
   }
 
+MQ2 mq2(pin);
 
-void setup()
-{
-  // Debug console
+void setup(){
   Serial.begin(9600);
   Blynk.begin(auth);
-  mq2.begin();
+  dht.begin();
   timer.setInterval(1000L, sendSensor);
-  Bridge.begin();
+  mq2.begin();
+  lcd.clear();
 }
 
-void loop()
-{
-  delay(1000);
-  Blynk.run();
-  timer.run();
+void loop(){
+  
+  float* values= mq2.read(true); //set it false if you don't want to print the values in the Serial
+  
+  lpg = mq2.readLPG();
+  co = mq2.readCO();
+  smoke = mq2.readSmoke();
+   Blynk.virtualWrite(V7, lpg);
+   Blynk.virtualWrite(V8, co);
+   Blynk.virtualWrite(V9, smoke);
+   delay(2000);
+   Blynk.run();
+   timer.run();
 }
-
-//0722
-//mq2 to blynk 成功
+//0725
+//mq2&dht to blynk 
 
