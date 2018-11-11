@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>空氣品質監測站</title>
-    <link href="css/arduino-1.css" rel="stylesheet" type="text/css"/>
+    <link href="css/arduino-1.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
     <meta http-equiv="refresh" content="60" />
     <link href="images/2.jpg" rel="shortcut icon">
@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script>
         //<!-- 抓最新資料  -->
         $(function () {
@@ -168,11 +169,250 @@
             });
         });
 
-
-
-
-
     </script>
+
+
+    <!-- //增加數據註釋  -->
+
+    <style>
+        /* Tooltip 容器 */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Tooltip 文本 */
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 240px;
+            background-color: rgb(228, 245, 255);
+            color: rgb(19, 118, 148);
+            text-align: left;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* 定位 */
+            position: absolute;
+            left:141%;
+            top: 25;
+            z-index: 3;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            font-size:22px;
+        }
+    </style>
+
+    <style>
+        /* Tooltip 容器 */
+        .tooltip2 {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Tooltip 文本 */
+        .tooltip2 .tooltiptext {
+            visibility: hidden;
+            width: 240px;
+            background-color: rgb(220, 255, 226);
+            color: rgb(20, 99, 53);
+            text-align: left;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* 定位 */
+            position: absolute;
+            left:160%;
+            top: 25;
+            z-index: 3;
+        }
+
+        .tooltip2:hover .tooltiptext {
+            visibility: visible;
+            font-size:22px;
+        }
+    </style>
+
+    <style>
+        /* Tooltip 容器 */
+        .tooltip3 {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Tooltip 文本 */
+        .tooltip3 .tooltiptext {
+            visibility: hidden;
+            width: 240px;
+            background-color: rgb(255, 242, 219);
+            color: rgb(146, 87, 10);
+            text-align: left;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* 定位 */
+            position: absolute;
+            left:181%;
+            top: 25;
+            z-index: 3;
+        }
+
+        .tooltip3:hover .tooltiptext {
+            visibility: visible;
+            font-size:22px;
+        }
+    </style>
+
+    <style>
+        /* Tooltip 容器 */
+        .tooltip4 {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Tooltip 文本 */
+        .tooltip4 .tooltiptext {
+            visibility: hidden;
+            width: 240px;
+            background-color: rgb(221, 247, 247);
+            color: rgb(27, 94, 89);
+            text-align: left;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* 定位 */
+            position: absolute;
+            left:200%;
+            top: 25;
+            z-index: 3;
+        }
+
+        .tooltip4:hover .tooltiptext {
+            visibility: visible;
+            font-size:22px;
+        }
+    </style>
+
+    <style>
+        /* Tooltip 容器 */
+        .tooltip5 {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Tooltip 文本 */
+        .tooltip5 .tooltiptext {
+            visibility: hidden;
+            width: 240px;
+            background-color: rgb(252, 238, 249);
+            color: rgb(105, 31, 105);
+            text-align: left;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* 定位 */
+            position: absolute;
+            left:-347%;
+            top: 195;
+            z-index: 3;
+        }
+
+        .tooltip5:hover .tooltiptext {
+            visibility: visible;
+            font-size:22px;
+        }
+    </style>
+
+    <style>
+        /* Tooltip 容器 */
+        .tooltip6 {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Tooltip 文本 */
+        .tooltip6 .tooltiptext {
+            visibility: hidden;
+            width: 240px;
+            background-color: rgb(253, 241, 249);
+            color: rgb(168, 43, 106);
+            text-align: left;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* 定位 */
+            position: absolute;
+            left:282%;
+            top: 116;
+            z-index: 3;
+        }
+
+        .tooltip6:hover .tooltiptext {
+            visibility: visible;
+            font-size:22px;
+        }
+    </style>
+
+<style>
+    /* Tooltip 容器 */
+    .tooltip7 {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Tooltip 文本 */
+    .tooltip7 .tooltiptext {
+        visibility: hidden;
+        width: 240px;
+        background-color: rgb(255, 255, 239);
+        color: rgb(97, 92, 36);
+        text-align: left;
+        padding: 5px 0;
+        border-radius: 6px;
+
+        /* 定位 */
+        position: absolute;
+        left:322%;
+        top: 117;
+        z-index: 3;
+    }
+
+    .tooltip7:hover .tooltiptext {
+        visibility: visible;
+        font-size:22px;
+    }
+</style>
+
+<style>
+    /* Tooltip 容器 */
+    .tooltip8 {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Tooltip 文本 */
+    .tooltip8 .tooltiptext {
+        visibility: hidden;
+        width: 240px;
+        background-color: rgba(224, 224, 224, 0.932);
+        color: rgb(48, 46, 48);
+        text-align: left;
+        padding: 5px 0;
+        border-radius: 6px;
+
+        /* 定位 */
+        position: absolute;
+        left:361%;
+        top: 116;
+        z-index: 3;
+    }
+
+    .tooltip8:hover .tooltiptext {
+        visibility: visible;
+        font-size:22px;
+    }
+</style>
 
 </head>
 
@@ -182,8 +422,9 @@
         <div class="content">
             <!-- 標題  -->
             <a href="index.html">
-            <img src="images/2.jpg" title="返回首頁" class="author">
-            </a><h1>空氣品質監測第一站</h1>
+                <img src="images/2.jpg" title="返回首頁" class="author">
+            </a>
+            <h1>空氣品質監測第一站</h1>
 
             <!--建議-->
             <div class="advise">
@@ -195,6 +436,96 @@
                 </h2>
 
             </div>
+
+            <!-- PM2.5註解  -->
+            <div class="tooltip">
+                <img src="images/question.png" class="question" >
+                <span class="tooltiptext">
+                    <ol>
+                        <li type = "square">&lt;18°C：氣溫寒冷</li>
+                        <li type = "square">18°C-27°C：氣溫適宜</li>
+                        <li type = "square">>28°C：氣溫炎熱</li>
+                    </ol>
+                </span>
+            </div>
+
+            <div class="tooltip2">
+                <img src="images/question2.png" class="question2" >
+                <span class="tooltiptext">
+                    <ol>
+                        <li type = "square">&lt;30%：過於乾燥</li>
+                        <li type = "square">30%-70%：濕度適宜</li>
+                        <li type = "square">>70%：過於潮濕</li>
+                    </ol>
+                </span>
+            </div>
+
+            <div class="tooltip3">
+                <img src="images/question3.png" class="question3" >
+                <span class="tooltiptext">
+                    <ol>
+                        <li type = "square">&lt;1000：不影響</li>
+                        <li type = "square">>1000：危害人體</li>
+                    </ol>
+                </span>
+            </div>
+
+            <div class="tooltip4">
+                <img src="images/question4.png" class="question4" >
+                <span class="tooltiptext">
+                    <ol>
+                        <li type = "square">&lt;35：不影響</li>
+                        <li type = "square">>35：危害人體</li>
+                    </ol>
+                </span>
+            </div>
+
+            <div class="tooltip5">
+                <img src="images/question5.png" class="question5" >
+                <span class="tooltiptext">
+                    <ol>
+                        <li type = "square">&lt;36：濃度低</li>
+                        <li type = "square">36-54：濃度中等</li>
+                        <li type = "square">54-71：濃度偏高</li>
+                        <li type = "square">>71：濃度過高</li>
+                    </ol>
+                </span>
+            </div>
+
+            <div class="tooltip6">
+                <img src="images/question6.png" class="question6" >
+                <span class="tooltiptext">
+                    <ol>
+                        <li type = "square">&lt;36：濃度低</li>
+                        <li type = "square">36-54：濃度中等</li>
+                        <li type = "square">54-71：濃度偏高</li>
+                        <li type = "square">>71：濃度過高</li>
+                    </ol>
+                </span>
+            </div>
+
+            <div class="tooltip7">
+                <img src="images/question7.png" class="question7" >
+                <span class="tooltiptext">
+                    <ol>
+                        <li type = "square">&lt;125：不影響</li>
+                        <li type = "square">>125：危害人體</li>
+                    </ol>
+                </span>
+            </div>
+            
+            <div class="tooltip8">
+                <img src="images/question8.png" class="question8" >
+                <span class="tooltiptext">
+                    <ol>
+                        <li type = "square">&lt;36：濃度低</li>
+                        <li type = "square">36-54：濃度中等</li>
+                        <li type = "square">54-71：濃度偏高</li>
+                        <li type = "square">>71：濃度過高</li>
+                    </ol>
+                </span>
+            </div>
+
             <!-- 彈出視窗 -->
             <div style="display: none;">
                 <div id="tempdialog" title="溫度歷史折線圖">
