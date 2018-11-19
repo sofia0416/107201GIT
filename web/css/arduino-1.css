@@ -57,101 +57,7 @@ img.author{
 
 }
 
-img.question{
-    position: relative;
-    float:left;
-    width: 15%;
-    right:-120%;
-    top: 70;
-    margin-right:20px;
-    margin-top:50px;
-    z-index: 2;
 
-}
-
-img.question2{
-    position: relative;
-    float:left;
-    width: 15%;
-    right:-140%;
-    top: 70;
-    margin-right:20px;
-    margin-top:50px;
-    z-index: 2;
-
-}
-
-img.question3{
-    position: relative;
-    float:left;
-    width: 15%;
-    right:-160%;
-    top: 70;
-    margin-right:20px;
-    margin-top:50px;
-    z-index: 2;
-
-}
-
-img.question4{
-    position: relative;
-    float:left;
-    width: 15%;
-    right:-180%;
-    top: 70;
-    margin-right:20px;
-    margin-top:50px;
-    z-index: 2;
-
-}
-
-img.question5{
-    position: relative;
-    float:left;
-    width: 15%;
-    left:-367%;
-    top: 240;
-    margin-right:20px;
-    margin-top:50px;
-    z-index: 2;
-
-}
-
-img.question6{
-    position: relative;
-    float:left;
-    width: 15%;
-    right:-262%;
-    top: 162;
-    margin-right:20px;
-    margin-top:50px;
-    z-index: 2;
-
-}
-
-img.question7{
-    position: relative;
-    float:left;
-    width: 15%;
-    right:-301%;
-    top: 162;
-    margin-right:20px;
-    margin-top:50px;
-    z-index: 2;
-
-}
-
-img.question8{
-    position: relative;
-    float:left;
-    width: 15%;
-    right:-340%;
-    top: 162;
-    margin-right:20px;
-    margin-top:50px;
-    z-index: 2;
-
-}
 
 p.author{
     font-size:14px;
@@ -190,7 +96,7 @@ iframe{
 /* 圖片按鈕               */
 
 div.items{
-    margin-top:-130px;
+    margin-top:0px;
     margin-bottom:50px;
     margin-left:25px;
 }
@@ -218,14 +124,14 @@ div.items a:nth-child(1) div.item,
 div.items a:nth-child(2) div.item,
 div.items a:nth-child(3) div.item
 {
-    margin-right:30px;
+    margin-right:20px;
 }
 
 div.items2 a:nth-child(1) div.item,
 div.items2 a:nth-child(2) div.item,
 div.items2 a:nth-child(3) div.item
 {
-    margin-right:30px;
+    margin-right:20px;
 }
 
 p.data{
@@ -241,89 +147,239 @@ div.item:hover{
 
 /*=========================*/
 
-/* PM2.5註解               */
 
-.wrapper{
-    position: absolute;
-    top: 25%;
-    left: 115%;
-    transform: translate(-50%,-50%);
-  }
-  
-  ul{
-    list-style: none;
-    width: 600px;
-  }
-  
-  ul li{
-    width: 70px;
-    float: left;
-    margin: 0 25px;
-    height: 70px;
-    background: #fff;
-    border-radius: 50%;
+/* 增加數據註釋             */
+
+/* Tooltip 容器 */
+.tooltip1 {
     position: relative;
-    cursor: pointer;
-  }
-  
-  ul li .fa{
-    position: absolute;
-    color: rgb(29, 151, 207);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    font-size:50px;
-  }
-  
-  ul li:before{
-    content: attr(data-tooltip);
-    width: 212px;
-    height: 175px;
-    position: absolute;
-    top: -90px;
-    left: -215px;
+    display: inline-block;
+}
+
+/* Tooltip 文本 */
+.tooltip1 .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: rgb(228, 245, 255);
+    color: rgb(19, 118, 148);
     text-align: left;
-    line-height: 25px;
-    border-radius: 5px;
-    opacity: 0;
-    color: rgb(47, 144, 182);
-    font-weight: bold;
-    background: rgb(205, 239, 250);
-    text-transform: uppercase;
-    font-family: arial;
-    transition: all 0.5s ease;
-  }
-  
-  ul li:hover:before,
-  ul li:hover:after{
-    opacity: 1;
-    transition: all 0.5s ease;
-  }
-  
-  ul li:after{
-    content: "";
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* 定位 */
     position: absolute;
-    top: 27%;
-    left: -10%; 
-    border-left: 15px solid rgb(205, 239, 250);
-    border-right: 15px solid transparent;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    opacity: 0;
-    transition: all 0.5s ease;
-  }
-  
-  @media screen and (max-width: 700px){
-    .wrapper{
-      top: 75%;
-    }
-    ul{
-      width: 100px;
-    }
-    ul li{
-      margin: 40px 0;
-    }
-  }
+    left:-20;
+    top: -140;
+    z-index: 3;
+}
+
+.tooltip1:hover .tooltiptext {
+    visibility: visible;
+    font-size:22px;
+}
+
+
+/* Tooltip 容器 */
+.tooltip2 {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip 文本 */
+.tooltip2 .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: rgb(220, 255, 226);
+    color: rgb(20, 99, 53);
+    text-align: left;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* 定位 */
+    position: absolute;
+    left:-20;
+    top: -140;
+    z-index: 3;
+}
+
+.tooltip2:hover .tooltiptext {
+    visibility: visible;
+    font-size:22px;
+}
+
+
+/* Tooltip 容器 */
+.tooltip3 {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip 文本 */
+.tooltip3 .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: rgb(255, 242, 219);
+    color: rgb(146, 87, 10);
+    text-align: left;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* 定位 */
+    position: absolute;
+    left:-20;
+    top: -113;
+    z-index: 3;
+}
+
+.tooltip3:hover .tooltiptext {
+    visibility: visible;
+    font-size:22px;
+}
+
+
+/* Tooltip 容器 */
+.tooltip4 {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip 文本 */
+.tooltip4 .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: rgb(221, 247, 247);
+    color: rgb(27, 94, 89);
+    text-align: left;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* 定位 */
+    position: absolute;
+    left:-20;
+    top: -113;
+    z-index: 3;
+}
+
+.tooltip4:hover .tooltiptext {
+    visibility: visible;
+    font-size:22px;
+}
+
+
+/* Tooltip 容器 */
+.tooltip5 {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip 文本 */
+.tooltip5 .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: rgb(252, 238, 249);
+    color: rgb(105, 31, 105);
+    text-align: left;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* 定位 */
+    position: absolute;
+    left:-20;
+    top: 130;
+    z-index: 3;
+}
+
+.tooltip5:hover .tooltiptext {
+    visibility: visible;
+    font-size:22px;
+}
+
+
+/* Tooltip 容器 */
+.tooltip6 {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip 文本 */
+.tooltip6 .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: rgb(253, 241, 249);
+    color: rgb(168, 43, 106);
+    text-align: left;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* 定位 */
+    position: absolute;
+    left:-20;
+    top: 130;
+    z-index: 3;
+}
+
+.tooltip6:hover .tooltiptext {
+    visibility: visible;
+    font-size:22px;
+}
+
+
+/* Tooltip 容器 */
+.tooltip7 {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip 文本 */
+.tooltip7 .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: rgb(255, 255, 239);
+    color: rgb(97, 92, 36);
+    text-align: left;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* 定位 */
+    position: absolute;
+    left:-20;
+    top: 130;
+    z-index: 3;
+}
+
+.tooltip7:hover .tooltiptext {
+    visibility: visible;
+    font-size:22px;
+}
+
+
+/* Tooltip 容器 */
+.tooltip8 {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip 文本 */
+.tooltip8 .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: rgb(224, 224, 224);
+    color: rgb(48, 46, 48);
+    text-align: left;
+    padding: 5px 0;
+    border-radius: 6px;
+
+/* 定位 */
+    position: absolute;
+    left:-20;
+    top: 130;
+    z-index: 3;
+}
+
+.tooltip8:hover .tooltiptext {
+    visibility: visible;
+    font-size:22px;
+}
 
 /*=========================*/
 
@@ -337,4 +393,5 @@ div.footer{
     color:#f5ecb0;  
     font-size: 25px;  
 }
+
 /*=========================*/
