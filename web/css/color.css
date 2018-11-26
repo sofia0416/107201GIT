@@ -1,39 +1,31 @@
-    /* body{
-     background-color: #000000;
-   padding: 0px;
-   margin: 0px;
- } */
-
- body {
-    margin:0;
-    padding:0;
-    background: #000 url(minwt_bg.jpg) center center fixed no-repeat;
-    -moz-background-size: cover;
-    background-size: cover;
-}
-
-#gradient
-{
-  width: 100%;
-  height: 100%;
+body{
+    background-color: #000000;
   padding: 0px;
   margin: 0px;
 }
 
+#gradient
+{
+ width: 100%;
+ height: 100%;
+ padding: 0px;
+ margin: 0px;
+}
+
 img.author{
-    position: absolute;
-    width: 120px;
-    border-radius: 80px;
-    top:30%;
-    left:47%;
-    box-shadow:0px 5px 10px 0px #333;
+  position: absolute;
+  width: 120px;
+  border-radius: 80px;
+  left:45%;
+  bottom: 50%;
+  box-shadow:0px 5px 10px 0px #333;
 }
 
 div.title{
-    position: relative;
-    font-size: 100%;
-    color: white;
-    top:47%;
-    left:46%;
-    text-shadow: black 0.1em 0.1em 0.2em;
+  position: absolute;
+  font-size: 100%;
+  left: 44%;
+  bottom: 40%;
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
 }
